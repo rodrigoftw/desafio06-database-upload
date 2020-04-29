@@ -38,7 +38,7 @@ class ImportTransactionsService {
         cell.trim(),
       );
 
-      if (!title || !value || !type) return;
+      if (!title || !type || !value) return;
 
       categoryLines.push(category);
       transactionLines.push({ title, type, value, category });
@@ -73,8 +73,8 @@ class ImportTransactionsService {
     const createdTransactions = transactionRepository.create(
       transactionLines.map(transaction => ({
         title: transaction.title,
-        value: transaction.value,
         type: transaction.type,
+        value: transaction.value,
         category: allCategories.find(
           category => category.title === transaction.category,
         ),
